@@ -1,5 +1,8 @@
 .vscode/
 
+# developer app configuration
+app/src/config
+
 # mac artifacts
 .DS_Store
 
