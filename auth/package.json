@@ -2,7 +2,7 @@
   "name": "serverless-spotify-now-playing",
   "version": "1.0.0",
   "description": "API for retrieving currently playing track in Spotify",
-  "main": "index.js",
+  "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/akhtarja/serverless-spotify-now-playing/issues"
   },
-  "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme"
+  "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme",
+  "dependencies": {
+    "aws-sdk": "^2.403.0",
+    "fs": "0.0.1-security",
+    "request": "^2.88.0"
+  }
 }
