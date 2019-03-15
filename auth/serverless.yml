@@ -1,4 +1,7 @@
-service: spotify-now-playing
+service: spotify-now-playing-auth
+
+plugins:
+  - AuthDeploymentPlugin
 
 custom:
   namespace: spotify-now-playing-${self:custom.stage}
