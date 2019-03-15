@@ -1,0 +1,19 @@
+{
+  "name": "serverless-spotify-now-playing",
+  "version": "1.0.0",
+  "description": "API for retrieving currently playing track in Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhtarja/serverless-spotify-now-playing.git"
+  },
+  "author": "Javed Akhtar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akhtarja/serverless-spotify-now-playing/issues"
+  },
+  "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme"
+}
