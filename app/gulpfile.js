@@ -36,16 +36,6 @@ function modules() {
   ])
   .pipe(gulp.dest('./build/vendor/bootstrap'));
 
-  // Font Awesome
-  var fontAwesome = gulp.src([
-    './node_modules/font-awesome/**/*',
-    '!./node_modules/font-awesome/{less,less/*}',
-    '!./node_modules/font-awesome/{scss,scss/*}',
-    '!./node_modules/font-awesome/.*',
-    '!./node_modules/font-awesome/*.{txt,json,md}'
-  ])
-  .pipe(gulp.dest('./build/vendor/font-awesome'));
-
   // jQuery
   var jquery = gulp.src([
     './node_modules/jquery/dist/*',
@@ -70,7 +60,7 @@ function modules() {
   ])
   .pipe(gulp.dest('./build/vendor/simple-line-icons/css'))
 
-  return merge(bootstrap, fontAwesome, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCss);
+  return merge(bootstrap, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCss);
 }
 
 // CSS task
