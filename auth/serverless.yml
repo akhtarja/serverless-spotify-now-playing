@@ -6,7 +6,7 @@ plugins:
 custom:
   namespace: spotify-now-playing-${self:custom.stage}
   stage: ${opt:stage, self:provider.stage}
-  config_path: "../app/src/config"
+  config_path: "../app/js/config"
 
 provider:
   name: aws

@@ -2,59 +2,50 @@ const fs = require("fs");
 const AWS = require('aws-sdk');
 
 class AuthDeploymentPlugin {
-    constructor(serverless, options) {
-        this.serverless = serverless;
-        this.options = options;
+    constructor(serverless) {
         this.hooks = {
-            "after:deploy:deploy": this.afterDeploy.bind(this)
+            "after:deploy:deploy": this.afterDeploy.bind(null, serverless)
         }
     }
 
-    getResourceId(data, resourceName) {
-        return data.find(resource => {
-            return resource.LogicalResourceId === resourceName
-        }).PhysicalResourceId
-    }
-
-    afterDeploy() {
-        console.log('AuthDeploymentPlugin start');
-        this.writeConfig();
-        console.log('AuthDeploymentPlugin end');
-    }
-
-    writeConfig() {
-        const provider = this.serverless.service.provider;
-        const custom = this.serverless.service.custom;
-        const service = this.serverless.service.service;
+    afterDeploy(serverless) {
+      return new Promise(function(resolve, reject) {
+        const provider = serverless.service.provider;
+        const custom = serverless.service.custom;
+        const service = serverless.service.service;
 
         const credentials = new AWS.SharedIniFileCredentials({ profile: provider.profile });
         const region = provider.region;
         const cloudFormation = new AWS.CloudFormation({ credentials, region });
 
-        cloudFormation.describeStackResources({ StackName: `${service}-${custom.stage}` }).promise()
-            .then((data) => {
+        const params = {
+          StackName: `${service}-${custom.stage}`
+        };
 
-                const config = {
-                    clientID: provider.environment.SPOTIFY_CLIENT_ID,
-                    scope: provider.environment.AUTH_SCOPES,
-                    region: region,
-                    stage: custom.stage,
-                    apiGatewayRestApi: this.getResourceId(data.StackResources, "ApiGatewayRestApi")
-                };
-                const fileContents = `export default ${JSON.stringify(config)}`;
+        cloudFormation.describeStackResources(params, function(err, response) {
+          if (err) {
+            console.log(err, err.stack);
+            return reject(err);
+          } else {
+            const config = {
+              clientID: provider.environment.SPOTIFY_CLIENT_ID,
+              scope: provider.environment.AUTH_SCOPES,
+              region: region,
+              stage: custom.stage,
+              apiGatewayRestApi: response.StackResources.find(resource => resource.LogicalResourceId === "ApiGatewayRestApi").PhysicalResourceId
+            };
+            const fileContents = `export default ${JSON.stringify(config)}`;
+            const path = custom.config_path;
 
-                const path = custom.config_path;
+            if (!fs.existsSync(path)) {
+              fs.mkdirSync(path);
+            }
 
-                if (!fs.existsSync(path)) {
-                    fs.mkdirSync(path);
-                }
-
-                console.log("debug", fileContents);
-
-                fs.writeFile(`${path}/${service}.js`, fileContents, (err) => {
-                    if (err) return console.log(err);
-                });
-            });
+            fs.writeFileSync(`${path}/${service}.js`, fileContents);
+            return resolve(response);
+          }
+        });
+      });
     }
 }
 
