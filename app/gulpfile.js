@@ -5,7 +5,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const rename = require("gulp-rename");
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 const merge = require("merge-stream");
 const del = require("del");
 const browsersync = require('browser-sync').create();
@@ -82,7 +82,7 @@ function css() {
 function js() {
   return gulp
     .src([
-      './js/*.js'
+      './js/**/*.js'
     ])
     .pipe(uglify())
     .pipe(rename({

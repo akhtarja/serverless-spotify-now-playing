@@ -34,7 +34,7 @@ class AuthDeploymentPlugin {
               stage: custom.stage,
               apiGatewayRestApi: response.StackResources.find(resource => resource.LogicalResourceId === "ApiGatewayRestApi").PhysicalResourceId
             };
-            const fileContents = `export default ${JSON.stringify(config)}`;
+            const fileContents = `export default ${JSON.stringify(config)};`;
             const path = custom.config_path;
 
             if (!fs.existsSync(path)) {
