@@ -1,7 +1,7 @@
 .vscode/
 
 # developer app configuration
-app/src/config
+app/js/config
 
 # mac artifacts
 .DS_Store
