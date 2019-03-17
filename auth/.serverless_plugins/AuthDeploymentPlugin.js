@@ -37,13 +37,6 @@ class AuthDeploymentPlugin {
               redirect_uri: `https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${custom.stage}/redirect`,
               state: uuidv4(),
             });
-            // const config = {
-            //   clientID: provider.environment.SPOTIFY_CLIENT_ID,
-            //   scope: provider.environment.AUTH_SCOPES,
-            //   region: region,
-            //   stage: custom.stage,
-            //   apiGatewayRestApi: response.StackResources.find(resource => resource.LogicalResourceId === "ApiGatewayRestApi").PhysicalResourceId
-            // };
             const fileContents = `const ${service.replace(/-/g, '_')}_querystring = '${authQueryString}';`;
             const path = custom.config_path;
 

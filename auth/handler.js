@@ -3,6 +3,7 @@
 
 const request = require('request');
 const AWS = require('aws-sdk');
+const uuidv4 = require('uuid/v4');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
@@ -76,10 +77,12 @@ const writeToDb = (event) => {
     });
 };
 
-const successResponse = callback => callback(null, {
-  statusCode: 302,
-  headers: { Location: process.env.SUCCESS_URL },
-});
+const successResponse = (apiKey, callback) => {
+  callback(null, {
+    statusCode: 302,
+    headers: { Location: `${process.env.SUCCESS_URL}?apiKey=${apiKey}` },
+  });
+}
 
 const errorResponse = (error, callback) => {
   console.error('error:', error);
@@ -94,11 +97,14 @@ const redirect = async (event, context, callback) => {
 
   try {
     eventCopy = await getToken(eventCopy);
-    Object.assign(eventCopy, { expires_at: (Date.now() + eventCopy.expires_in) });
+    Object.assign(eventCopy, {
+      apiKey: uuidv4(),
+      expires_at: (Date.now() + eventCopy.expires_in),
+    });
     eventCopy = await getEmailAddress(eventCopy);
     writeToDb(eventCopy);
 
-    return successResponse(callback);
+    return successResponse(eventCopy.apiKey, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }
