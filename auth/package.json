@@ -19,6 +19,8 @@
   "dependencies": {
     "aws-sdk": "^2.422.0",
     "fs": "0.0.1-security",
-    "request": "^2.88.0"
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "uuid": "^3.3.2"
   }
 }
