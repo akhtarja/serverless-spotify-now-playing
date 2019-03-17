@@ -10,7 +10,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const getCode = event => ({
   code: event.queryStringParameters.code,
   host: event.requestContext.domainName,
-  path: event.requestContext.path,
+  path: event.requestContext.path
 });
 
 const getToken = (event) => {
@@ -24,12 +24,12 @@ const getToken = (event) => {
     form: {
       code: event.code,
       redirect_uri: `https://${event.host}${event.path}`,
-      grant_type: 'authorization_code',
+      grant_type: 'authorization_code'
     },
     headers: {
-      Authorization: `Basic ${(Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64'))}`,
+      Authorization: `Basic ${(Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64'))}`
     },
-    json: true,
+    json: true
   };
 
   return new Promise((resolve, reject) => {
@@ -49,8 +49,8 @@ const getEmailAddress = (event) => {
     headers: {
       Authorization: `Bearer ${event.access_token}`,
       Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   };
 
   return new Promise((resolve, reject) => {
@@ -67,7 +67,7 @@ const getEmailAddress = (event) => {
 const writeToDb = (event) => {
   const params = {
     TableName: process.env.USERS_TABLE,
-    Item: event,
+    Item: event
   };
 
   return dynamodb.put(params).promise()
@@ -80,15 +80,15 @@ const writeToDb = (event) => {
 const successResponse = (apiKey, callback) => {
   callback(null, {
     statusCode: 302,
-    headers: { Location: `${process.env.SUCCESS_URL}?apiKey=${apiKey}` },
+    headers: { Location: `${process.env.SUCCESS_URL}?apiKey=${apiKey}` }
   });
-}
+};
 
 const errorResponse = (error, callback) => {
   console.error('error:', error);
   return callback(null, {
     statusCode: 302,
-    headers: { Location: process.env.ERROR_URL },
+    headers: { Location: process.env.ERROR_URL }
   });
 };
 
@@ -99,7 +99,7 @@ const redirect = async (event, context, callback) => {
     eventCopy = await getToken(eventCopy);
     Object.assign(eventCopy, {
       apiKey: uuidv4(),
-      expires_at: (Date.now() + eventCopy.expires_in),
+      expires_at: (Date.now() + eventCopy.expires_in)
     });
     eventCopy = await getEmailAddress(eventCopy);
     writeToDb(eventCopy);
@@ -111,5 +111,5 @@ const redirect = async (event, context, callback) => {
 };
 
 module.exports = {
-  redirect,
+  redirect
 };
