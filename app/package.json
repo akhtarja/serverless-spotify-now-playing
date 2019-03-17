@@ -1,7 +1,7 @@
 {
   "name": "serverless-spotify-now-playing-app",
   "version": "1.0.0",
-  "description": "Front end for the Spotify Now Playing microservice",
+  "description": "Front end for the Spotify Now Playing",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/akhtarja/serverless-spotify-now-playing.git"
