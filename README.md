@@ -19,8 +19,8 @@ This application uses Bootstrap for the front end, and NodeJS running on AWS Lam
 | :--- | :--- |
 | `SPOTIFY_NOW_PLAYING_CLIENT_ID_[dev/staging/prod]` | Spotify Client ID provided in the Spotify Developer Dashboard |
 | `SPOTIFY_NOW_PLAYING_CLIENT_SECRET_[dev/staging/prod]` | Spotify Client Secret provided in the Spotify Developer Dashboard |
-| `SPOTIFY_NOW_PLAYING_SUCCESS_URL_[dev/staging/prod]` | The URL of the page to redirect the user to on successful login |
-| `SPOTIFY_NOW_PLAYING_ERROR_URL_[dev/staging/prod]` | The URL of the page to redirect the user to on unsuccessful login |
+| `SPOTIFY_NOW_PLAYING_SUCCESS_URL_[dev/staging/prod]` | The absolute URL of the page to redirect the user to on successful login |
+| `SPOTIFY_NOW_PLAYING_ERROR_URL_[dev/staging/prod]` | The absolute URL of the page to redirect the user to on unsuccessful login |
 
 5. Deploy the `auth` service. From the project's root:
 ```

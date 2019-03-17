@@ -106,7 +106,9 @@ function img() {
 function html() {
   return gulp
     .src([
-      './index.html'
+      './index.html',
+      './success.html',
+      './error.html'
     ])
     .pipe(gulp.dest('./build'))
     .pipe(browsersync.stream());
