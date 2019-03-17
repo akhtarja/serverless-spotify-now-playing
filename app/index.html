@@ -14,9 +14,6 @@
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
-  <!-- Plugin CSS -->
-  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="css/creative.min.css" rel="stylesheet">
 
@@ -34,7 +31,7 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5">Spotify Now Playing is a simple API that returns your currently playing track in Spotify. Use of the API requires a one-time Spotify sign-in, in exchange for an API key.</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="">Get API Key</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" id="get-api-key" href="">Get API Key</a>
         </div>
       </div>
     </div>
@@ -68,10 +65,13 @@
 
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="js/creative.min.js"></script>
+
+  <!-- Set 'Get API Key' button link -->
+  <script src="js/config/spotify-now-playing-auth.min.js"></script>
+  <script src="js/getApiKeyLink.min.js"></script>
 
 </body>
 
