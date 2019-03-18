@@ -91,13 +91,18 @@ const getPlaybackState = (event) => {
         } = JSON.parse(body);
 
         if (!isPlaying) {
-          resolve(event);
+          resolve(Object.assign(event, {
+            nowPlaying: {
+              isPlaying
+            }
+          }));
         } else {
           resolve(Object.assign(event, {
             nowPlaying: {
-              songName: item.name,
+              isPlaying,
+              artists: item.artists.map(artist => artist.name),
               albumName: item.album.name,
-              artists: item.artists.map(artist => artist.name)
+              songName: item.name
             }
           }));
         }
@@ -130,7 +135,7 @@ const playbackState = async (event, context, callback) => {
     parsedEvent = await tokenRefresh(parsedEvent);
     parsedEvent = await writeToDb(parsedEvent);
     parsedEvent = await getPlaybackState(parsedEvent);
-    return successResponse((parsedEvent.nowPlaying || {}), callback);
+    return successResponse(parsedEvent.nowPlaying, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }
