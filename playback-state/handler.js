@@ -93,7 +93,8 @@ const getPlaybackState = (event) => {
         if (!isPlaying) {
           resolve(Object.assign(event, {
             nowPlaying: {
-              isPlaying
+              isPlaying,
+              fullResponse: body
             }
           }));
         } else {
@@ -102,12 +103,18 @@ const getPlaybackState = (event) => {
               isPlaying,
               artists: item.artists.map(artist => artist.name),
               albumName: item.album.name,
-              songName: item.name
+              songName: item.name,
+              fullResponse: body
             }
           }));
         }
       } else {
-        reject(error || response);
+        resolve(Object.assign(event, {
+          nowPlaying: {
+            isPlaying: false,
+            fullResponse: body
+          }
+        }));
       }
     });
   });
@@ -121,7 +128,7 @@ const successResponse = (nowPlaying, callback) => {
 };
 
 const errorResponse = (error, callback) => {
-  console.error('error:', error);
+  // console.error('error:', error);
   callback(null, {
     statusCode: 401
   });
