@@ -1,10 +1,14 @@
 # Spotify Now Playing
 
-**This project is under development**
-
 This is an API wrapper for Spotify that allows users to get their currently playing track with an API call.
 
 This application uses Bootstrap for the front end, and NodeJS running on AWS Lambda on the back end. Deployment is done using Serverless.
+
+## ESLint Configuration
+This step is only needed if you're doing dev work on the project and want to use ESLint (recommended). From the project's root:
+```
+npm install
+```
 
 ## Deploying the Back End
 1. Clone this repo.
@@ -32,6 +36,13 @@ serverless deploy [--stage dev|staging|prod]
 6. Once deployment is complete, Serverless will provide a URL for the newly created `redirect` API endpoint. Copy this URL.
 
 7. In the Spotify Developer Dashboard, edit the settings for your integration. In the section titled **Redirect URIs**, add the URL you copied in the previous step.
+
+8. Deploy the `playback-state` service. From the project's root:
+```
+cd playback-state
+npm install
+serverless deploy [--stage dev|staging|prod]
+```
 
 ## Building the Front End
 Build the application front end. Go back to the project's root and do the following for a **development environment**:
