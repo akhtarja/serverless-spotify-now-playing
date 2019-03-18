@@ -16,5 +16,5 @@
   const apiKey = getQueryVariable('apiKey');
 
   $('#api-key').html(apiKey);
-  $('#api-url').html(`http://spotify-now-playing.javedakhtar.io?apiKey=${apiKey}`);
+  $('#api-url').html(`${spotify_now_playing_playback_state_apiurl}?key=${apiKey}`);
 })(jQuery);
