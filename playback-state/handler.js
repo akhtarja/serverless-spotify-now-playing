@@ -82,7 +82,7 @@ const getPlaybackState = (event) => {
     }
   };
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     request(params, (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const {
@@ -128,7 +128,7 @@ const successResponse = (nowPlaying, callback) => {
 };
 
 const errorResponse = (error, callback) => {
-  // console.error('error:', error);
+  console.error('error:', error);
   callback(null, {
     statusCode: 401
   });
