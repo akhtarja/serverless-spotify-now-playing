@@ -15,11 +15,10 @@ const getCode = event => ({
 
 const getToken = (event) => {
   if (!event.code) {
-    console.error('no code found');
     throw new Error('no code found');
   }
 
-  const authOptions = {
+  const params = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
       code: event.code,
@@ -33,11 +32,11 @@ const getToken = (event) => {
   };
 
   return new Promise((resolve, reject) => {
-    request.post(authOptions, (error, response, body) => {
+    request.post(params, (error, response, body) => {
       if (!error && response.statusCode === 200) {
         resolve(body);
       } else {
-        reject(error);
+        reject(error || response);
       }
     });
   });
@@ -73,16 +72,14 @@ const writeToDb = (event) => {
   return dynamodb.put(params).promise()
     .then(() => event)
     .catch((error) => {
-      console.error('dynamodb error:', error);
+      throw new Error(`dynamodb error: ${JSON.stringify(error)}`);
     });
 };
 
-const successResponse = (apiKey, callback) => {
-  callback(null, {
-    statusCode: 302,
-    headers: { Location: `${process.env.SUCCESS_URL}?apiKey=${apiKey}` }
-  });
-};
+const successResponse = (apiKey, callback) => callback(null, {
+  statusCode: 302,
+  headers: { Location: `${process.env.SUCCESS_URL}?apiKey=${apiKey}` }
+});
 
 const errorResponse = (error, callback) => {
   console.error('error:', error);
@@ -93,18 +90,18 @@ const errorResponse = (error, callback) => {
 };
 
 const redirect = async (event, context, callback) => {
-  let eventCopy = getCode(event);
+  let parsedEvent = getCode(event);
 
   try {
-    eventCopy = await getToken(eventCopy);
-    Object.assign(eventCopy, {
+    parsedEvent = await getToken(parsedEvent);
+    Object.assign(parsedEvent, {
       apiKey: uuidv4(),
-      expires_at: (Date.now() + eventCopy.expires_in)
+      expires_at: ((Date.now() / 1000) + parsedEvent.expires_in)
     });
-    eventCopy = await getEmailAddress(eventCopy);
-    writeToDb(eventCopy);
+    parsedEvent = await getEmailAddress(parsedEvent);
+    writeToDb(parsedEvent);
 
-    return successResponse(eventCopy.apiKey, callback);
+    return successResponse(parsedEvent.apiKey, callback);
   } catch (error) {
     return errorResponse(error, callback);
   }

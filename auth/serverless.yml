@@ -18,7 +18,7 @@ provider:
     SPOTIFY_CLIENT_SECRET: ${env:SPOTIFY_NOW_PLAYING_CLIENT_SECRET_${self:custom.stage}}
     SUCCESS_URL: ${env:SPOTIFY_NOW_PLAYING_SUCCESS_URL_${self:custom.stage}}
     ERROR_URL: ${env:SPOTIFY_NOW_PLAYING_ERROR_URL_${self:custom.stage}}
-    AUTH_SCOPES: user-read-private user-read-email user-read-currently-playing
+    AUTH_SCOPES: user-read-private user-read-email user-read-playback-state
     USERS_TABLE: ${self:custom.namespace}-users
   iamRoleStatements:
     - Effect: Allow
