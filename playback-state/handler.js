@@ -93,26 +93,29 @@ const getPlaybackState = (event) => {
         if (!isPlaying) {
           resolve(Object.assign(event, {
             nowPlaying: {
-              isPlaying,
-              fullResponse: body
+              isPlaying
             }
           }));
         } else {
+          console.log(body);
           resolve(Object.assign(event, {
             nowPlaying: {
               isPlaying,
-              artists: item.artists.map(artist => artist.name),
+              artists: item.artists.map(artist => ({
+                name: artist.name,
+                uri: artist.uri
+              })),
               albumName: item.album.name,
+              albumUri: item.album.uri,
               songName: item.name,
-              fullResponse: body
+              songUri: item.uri
             }
           }));
         }
       } else {
         resolve(Object.assign(event, {
           nowPlaying: {
-            isPlaying: false,
-            fullResponse: body
+            isPlaying: false
           }
         }));
       }
