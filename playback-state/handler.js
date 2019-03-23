@@ -97,7 +97,6 @@ const getPlaybackState = (event) => {
             }
           }));
         } else {
-          console.log(body);
           resolve(Object.assign(event, {
             nowPlaying: {
               isPlaying,
