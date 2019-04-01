@@ -21,6 +21,23 @@
 
 <body id="page-top">
 
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Spotify Now Playing</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="./index.html">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <!-- Masthead -->
   <header class="masthead">
     <div class="container h-100">
@@ -30,15 +47,31 @@
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Spotify Now Playing is a simple API that returns your currently playing track in Spotify. Use of the API requires a one-time Spotify sign-in, in exchange for an API key.</p>
+          <p class="text-white-75 font-weight-light mb-5">Spotify Now Playing is an easy-to-use API that returns your currently playing track in Spotify. Use of the API requires a one-time Spotify sign-in, in exchange for an API key.</p>
           <a class="btn btn-primary btn-xl js-scroll-trigger" id="get-api-key" href="">Get API Key</a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- About Section -->
+  <!-- How it Works Section -->
   <section class="page-section bg-primary" id="about">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">How it Works</h2>
+          <hr class="divider light my-4">
+          <p class="text-white-75 font-weight-light mb-4">1. Get an API key using the link above.</p>
+          <p class="text-white-75 font-weight-light mb-4">2. Call the API from your app or website using the URL provided with your API key.</p>
+          <p class="text-white-75 font-weight-light mb-4">3. That's it!</p>
+          <a class="btn btn-light btn-xl js-scroll-trigger" id="sample-api-call" href="" target="_blank">See a sample API response</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source Section -->
+  <section class="page-section bg-dark" id="about">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
@@ -72,6 +105,10 @@
   <!-- Set 'Get API Key' button link -->
   <script src="js/config/spotify-now-playing-auth.min.js"></script>
   <script src="js/getApiKeyLink.min.js"></script>
+
+  <!-- Set 'See a Sample API Response' button link -->
+  <script src="js/config/spotify-now-playing-playback-state.min.js"></script>
+  <script src="js/getApiSampleLink.min.js"></script>
 
 </body>
 
