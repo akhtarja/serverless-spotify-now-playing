@@ -136,29 +136,33 @@ const errorResponse = (error, callback) => {
   });
 };
 
+const sampleResponse = (callback) => {
+  const response = {
+    isPlaying: true,
+    artists: [
+      {
+        name: 'Bill Plaskett',
+        uri: 'spotify:artist:1Oe2aaSbA7MFiWeknR3el5'
+      },
+      {
+        name: 'Joel Plaskett',
+        uri: 'spotify:artist:2AHGXy73E91elgCPcDlboC'
+      }
+    ],
+    albumName: 'Solidarity',
+    albumUri: 'spotify:album:7FzgzYwIVE6Vj2FX1RgauU',
+    songName: 'The Next Blue Sky',
+    songUri: 'spotify:track:6PwcBKz51zIT0Zz0pvRTti'
+  };
+
+  return successResponse(response, callback);
+};
+
 const playbackState = async (event, context, callback) => {
   let parsedEvent = event.queryStringParameters;
 
   if (parsedEvent.key === 'example') {
-    const sampleResponse = {
-      isPlaying: true,
-      artists: [
-        {
-          name: 'Gillian Welch',
-          uri: 'spotify:artist:2H5elA2mJKrHmqkN9GSfkz'
-        },
-        {
-          name: 'David Rawlings',
-          uri: 'spotify:artist:01XgbvLicKQELx7NqHgi5G'
-        }
-      ],
-      albumName: 'Look Again to the Wind: Johnny Cash\'s Bitter Tears Revisited',
-      albumUri: 'spotify:album:3Fdn9X7bYegjL6UNzXZdCs',
-      songName: 'As Long as the Grass Shall Grow',
-      songUri: 'spotify:track:2ZqOwAzXLG8EhKsR8FZDFP'
-    };
-
-    return successResponse(sampleResponse, callback);
+    return sampleResponse(callback);
   }
 
   try {
