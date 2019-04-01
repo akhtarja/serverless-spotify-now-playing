@@ -1,6 +1,7 @@
 .vscode/
 
-# developer app configuration
+# gulp build folders
+app/build
 app/js/config
 
 # mac artifacts

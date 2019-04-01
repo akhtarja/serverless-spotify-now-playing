@@ -25,6 +25,7 @@ npm install
 | `SPOTIFY_NOW_PLAYING_CLIENT_SECRET_[dev/staging/prod]` | Spotify Client Secret provided in the Spotify Developer Dashboard |
 | `SPOTIFY_NOW_PLAYING_SUCCESS_URL_[dev/staging/prod]` | The absolute URL of the page to redirect the user to on successful login |
 | `SPOTIFY_NOW_PLAYING_ERROR_URL_[dev/staging/prod]` | The absolute URL of the page to redirect the user to on unsuccessful login |
+| `SPOTIFY_NOW_PLAYING_CUSTOM_ENDPOINT_URL` | The absolute URL of a custom endpoint URL, if desired. If this is left blank, the API endpoint URL will be generated automatically by AWS |
 
 5. Deploy the `auth` service. From the project's root:
 ```

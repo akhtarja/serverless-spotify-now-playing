@@ -139,6 +139,28 @@ const errorResponse = (error, callback) => {
 const playbackState = async (event, context, callback) => {
   let parsedEvent = event.queryStringParameters;
 
+  if (parsedEvent.key == "example") {
+    const sampleResponse = {
+      isPlaying: true,
+      artists: [
+        {
+          name: 'Gillian Welch',
+          uri: 'spotify:artist:2H5elA2mJKrHmqkN9GSfkz'
+        },
+        {
+          name: 'David Rawlings',
+          uri: 'spotify:artist:01XgbvLicKQELx7NqHgi5G'
+        }
+      ],
+      albumName: 'Look Again to the Wind: Johnny Cash\'s Bitter Tears Revisited',
+      albumUri: 'spotify:album:3Fdn9X7bYegjL6UNzXZdCs',
+      songName: 'As Long as the Grass Shall Grow',
+      songUri: 'spotify:track:2ZqOwAzXLG8EhKsR8FZDFP'
+    };
+
+    return successResponse(sampleResponse, callback);
+  }
+
   try {
     parsedEvent = await getToken(parsedEvent);
     parsedEvent = await tokenRefresh(parsedEvent);

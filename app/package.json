@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "gulp && gulp dev",
-    "build": "gulp"
+    "build": "gulp",
+    "deploy": "aws s3 rm s3://nowplaying.tinyrobot.co --recursive && aws s3 cp build s3://nowplaying.tinyrobot.co --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive --profile spotify-now-playing-prod"
   }
 }

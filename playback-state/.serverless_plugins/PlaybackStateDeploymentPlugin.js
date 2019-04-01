@@ -30,14 +30,7 @@ class PlaybackStateDeploymentPlugin {
             return reject(err);
           } else {
             const apiGatewayRestApi = response.StackResources.find(resource => resource.LogicalResourceId === "ApiGatewayRestApi").PhysicalResourceId;
-            // const authQueryString = querystring.stringify({
-            //   response_type: 'code',
-            //   client_id: provider.environment.SPOTIFY_CLIENT_ID,
-            //   scope: provider.environment.AUTH_SCOPES,
-            //   redirect_uri: `https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${custom.stage}/redirect`,
-            //   state: uuidv4(),
-            // });
-            const apiUrl = `https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${custom.stage}/playbackstate`;
+            const apiUrl = provider.environment.SPOTIFY_NOW_PLAYING_CUSTOM_ENDPOINT_URL || `https://${apiGatewayRestApi}.execute-api.${region}.amazonaws.com/${custom.stage}/playbackstate`;
             const fileContents = `const ${service.replace(/-/g, '_')}_apiurl = '${apiUrl}';`;
             const path = custom.config_path;
 
