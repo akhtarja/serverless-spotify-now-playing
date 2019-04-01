@@ -139,7 +139,7 @@ const errorResponse = (error, callback) => {
 const playbackState = async (event, context, callback) => {
   let parsedEvent = event.queryStringParameters;
 
-  if (parsedEvent.key == "example") {
+  if (parsedEvent.key === 'example') {
     const sampleResponse = {
       isPlaying: true,
       artists: [
