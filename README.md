@@ -1,5 +1,7 @@
 # Spotify Now Playing
 
+This application is running and publicly available at https://nowplaying.tinyrobot.co/.
+
 This is an API wrapper for Spotify that allows users to get their currently playing track with an API call.
 
 This application uses Bootstrap for the front end, and NodeJS running on AWS Lambda on the back end. Deployment is done using Serverless.
