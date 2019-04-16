@@ -49,18 +49,7 @@ function modules() {
   ])
   .pipe(gulp.dest('./build/vendor/jquery-easing'))
 
-  // Simple Line Icons
-  var simpleLineIconsFonts = gulp.src([
-    './node_modules/simple-line-icons/fonts/**',
-  ])
-  .pipe(gulp.dest('./build/vendor/simple-line-icons/fonts'))
-
-  var simpleLineIconsCss = gulp.src([
-    './node_modules/simple-line-icons/css/**',
-  ])
-  .pipe(gulp.dest('./build/vendor/simple-line-icons/css'))
-
-  return merge(bootstrap, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCss);
+  return merge(bootstrap, jquery, jqueryEasing);
 }
 
 // CSS task
