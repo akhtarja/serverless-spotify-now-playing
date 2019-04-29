@@ -1,0 +1,22 @@
+version: 1
+update_configs:
+- package_manager: "javascript"
+  directory: "/"
+  update_schedule: "daily"
+  default_reviewers:
+    - "akhtarja"
+- package_manager: "javascript"
+  directory: "/app"
+  update_schedule: "daily"
+  default_reviewers:
+    - "akhtarja"
+- package_manager: "javascript"
+  directory: "/auth"
+  update_schedule: "daily"
+  default_reviewers:
+    - "akhtarja"
+- package_manager: "javascript"
+  directory: "/playback-state"
+  update_schedule: "daily"
+  default_reviewers:
+    - "akhtarja"
