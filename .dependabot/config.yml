@@ -5,18 +5,26 @@ update_configs:
   update_schedule: "daily"
   default_reviewers:
     - "akhtarja"
+  default_assignees:
+    - "akhtarja"
 - package_manager: "javascript"
   directory: "/app"
   update_schedule: "daily"
   default_reviewers:
+    - "akhtarja"
+  default_assignees:
     - "akhtarja"
 - package_manager: "javascript"
   directory: "/auth"
   update_schedule: "daily"
   default_reviewers:
     - "akhtarja"
+  default_assignees:
+    - "akhtarja"
 - package_manager: "javascript"
   directory: "/playback-state"
   update_schedule: "daily"
   default_reviewers:
+    - "akhtarja"
+  default_assignees:
     - "akhtarja"
