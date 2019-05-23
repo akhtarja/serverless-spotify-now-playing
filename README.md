@@ -1,5 +1,7 @@
 # Spotify Now Playing
 
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=akhtarja/serverless-spotify-now-playing)](https://dependabot.com)
+
 This application is running and publicly available at https://nowplaying.tinyrobot.co/.
 
 This is an API wrapper for Spotify that allows users to get their currently playing track with an API call.
