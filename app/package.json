@@ -19,7 +19,7 @@
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "del": "^4.1.1",
     "gulp": "4.0.2",
     "gulp-clean-css": "4.2.0",
