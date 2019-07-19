@@ -19,7 +19,7 @@
   "dependencies": {
     "aws-sdk": "^2.495.0",
     "fs": "0.0.1-security",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "request": "^2.88.0"
   }
 }
