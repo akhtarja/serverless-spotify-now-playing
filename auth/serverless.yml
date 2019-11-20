@@ -1,7 +1,10 @@
+org: akhtarja
+app: spotify-now-playing
 service: spotify-now-playing-auth
 
 plugins:
   - AuthDeploymentPlugin
+  - serverless-pseudo-parameters
 
 custom:
   namespace: spotify-now-playing-${self:custom.stage}
@@ -31,6 +34,7 @@ functions:
   redirect:
     name: ${self:custom.namespace}-redirect
     handler: handler.redirect
+    onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:spotify-now-playing-dlq-${self:custom.stage}-dlq
     events:
       - http:
           path: redirect

@@ -14,6 +14,25 @@ This step is only needed if you're doing dev work on the project and want to use
 npm ci
 ```
 
+## Serverless Framework Dashboard setup
+### Creating the app
+1. Log into the Serverless Framework Dashboard at https://dashboard.serverless.com and create an app called `spotify-now-playing`. If you need to create a new org to do this, create one now and name it anything you like.
+2. If this is your first time using the Serverless Framework Dashboard, run the following command and follow the prompts to complete the initial setup of the command line tool:
+```
+serverless login
+```
+### Profile setup
+The project uses the safeguard policies outlined below. Failure to configure these policies will not prevent you from deploying the app's services, but you will receive warnings when deploying to your dev environment. These safeguard can be configured in profiles names for each stage (`dev`, `staging`, `prod`), or under the `default` profile, which will be used as a fallback in case stage-specific profile don't exist.
+
+|Policy|Safeguard config|Enforcement level|
+|---|---|---|
+|`allowed-stages`|`- dev`<br>`-staging`<br>`- prod`|error: block the deploy from continuing|
+|`framework-version`|`>=1.39.1 <2.0.0`|warning: allow the deploy to continue, but warn the user|
+|`runtimes`|`nodejs10.x`|error: block the deploy from continuing|
+|`no-secret-env-vars`||error: block the deploy from continuing|
+|`allowed-regions`|`- us-east-1`|error: block the deploy from continuing|
+|`no-wild-iam-role-statements`||warning: allow the deploy to continue, but warn the user|
+
 ## Deploying the Back End
 1. Clone this repo.
 
@@ -31,20 +50,54 @@ npm ci
 | `SPOTIFY_NOW_PLAYING_ERROR_URL_[dev/staging/prod]` | The absolute URL of the page to redirect the user to on unsuccessful login |
 | `SPOTIFY_NOW_PLAYING_CUSTOM_ENDPOINT_URL` | The absolute URL of a custom endpoint URL, if desired. If this is left blank, the API endpoint URL will be generated automatically by AWS |
 
-5. Deploy the `auth` service. From the project's root:
+5. Deploy the `dlq` (dead letter queue) service. From the project's root:
 ```
-cd auth
+cd dlq
+```
+
+The next command can be skipped if you are not deploying from a freshly cloned instance of the project:
+```
+serverless --org [your serverless org name] --app spotify-now-playing
+```
+
+To install the dependencies and deploy the service to AWS:
+```
 npm ci
 serverless deploy [--stage dev|staging|prod]
 ```
 
-6. Once deployment is complete, Serverless will provide a URL for the newly created `redirect` API endpoint. Copy this URL.
+6. Deploy the `auth` service. From the project's root:
+```
+cd auth
+```
 
-7. In the Spotify Developer Dashboard, edit the settings for your integration. In the section titled **Redirect URIs**, add the URL you copied in the previous step.
+The next command can be skipped if you are not deploying from a freshly cloned instance of the project:
+```
+serverless --org [your serverless org name] --app spotify-now-playing
+```
 
-8. Deploy the `playback-state` service. From the project's root:
+To install the dependencies and deploy the service to AWS:
+```
+npm ci
+serverless deploy [--stage dev|staging|prod]
+```
+
+7. Once deployment is complete, Serverless will provide a URL for the newly created `redirect` API endpoint. Copy this URL.
+
+8. In the Spotify Developer Dashboard, edit the settings for your integration. In the section titled **Redirect URIs**, add the URL you copied in the previous step.
+
+9. Deploy the `playback-state` service. From the project's root:
 ```
 cd playback-state
+```
+
+The next command can be skipped if you are not deploying from a freshly cloned instance of the project:
+```
+serverless --org [your serverless org name] --app spotify-now-playing
+```
+
+To install the dependencies and deploy the service to AWS:
+```
 npm ci
 serverless deploy [--stage dev|staging|prod]
 ```

@@ -1,7 +1,10 @@
+org: akhtarja
+app: spotify-now-playing
 service: spotify-now-playing-playback-state
 
 plugins:
   - PlaybackStateDeploymentPlugin
+  - serverless-pseudo-parameters
 
 custom:
   namespace: spotify-now-playing-${self:custom.stage}
@@ -30,6 +33,7 @@ functions:
   playbackState:
     name: ${self:custom.namespace}-playback-state
     handler: handler.playbackState
+    onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:spotify-now-playing-dlq-${self:custom.stage}-dlq
     events:
       - http:
           path: playbackstate

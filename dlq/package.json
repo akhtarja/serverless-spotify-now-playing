@@ -1,7 +1,7 @@
 {
-  "name": "serverless-spotify-now-playing-playback-state",
+  "name": "serverless-spotify-now-playing-dlq",
   "version": "1.0.0",
-  "description": "Playback state service for Spotify Now Playing",
+  "description": "dead letter queue for Spotify Now Playing",
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,11 +16,5 @@
     "url": "https://github.com/akhtarja/serverless-spotify-now-playing/issues"
   },
   "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme",
-  "dependencies": {
-    "aws-sdk": "^2.575.0",
-    "fs": "0.0.1-security",
-    "lodash": "^4.17.15",
-    "request": "^2.88.0",
-    "serverless-pseudo-parameters": "^2.5.0"
-  }
+  "dependencies": {}
 }

@@ -1,6 +1,8 @@
 /* eslint no-console: ["error", { allow: ["log", "warn", "error"] }] */
 /* we want to allow console logging in Lambda functions in order to use AWS CloudWatch */
 
+'use strict';
+
 const request = require('request');
 const AWS = require('aws-sdk');
 const _ = require('lodash');

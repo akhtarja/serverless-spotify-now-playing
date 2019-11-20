@@ -1,0 +1,21 @@
+org: akhtarja
+app: spotify-now-playing
+service: spotify-now-playing-dlq
+
+custom:
+  namespace: spotify-now-playing-dlq-${self:custom.stage}
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: us-east-1
+  profile: spotify-now-playing-${self:custom.stage}
+
+resources:
+  Resources:
+    DeadLetterQueue:
+        Type: AWS::SNS::Topic
+        Properties:
+          DisplayName: 'Dead Letter Queue'
+          TopicName: ${self:custom.namespace}-dlq
