@@ -11,6 +11,7 @@ provider:
   runtime: nodejs10.x
   region: us-east-1
   profile: spotify-now-playing-${self:custom.stage}
+  stage: dev
 
 resources:
   Resources:

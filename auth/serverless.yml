@@ -16,6 +16,7 @@ provider:
   runtime: nodejs10.x
   region: us-east-1
   profile: spotify-now-playing-${self:custom.stage}
+  stage: dev
   environment:
     SPOTIFY_CLIENT_ID: ${env:SPOTIFY_NOW_PLAYING_CLIENT_ID_${self:custom.stage}}
     SPOTIFY_CLIENT_SECRET: ${env:SPOTIFY_NOW_PLAYING_CLIENT_SECRET_${self:custom.stage}}
