@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [1.0.1]
+
 - Updated all dependencies to latest versions.
 - Added `rel="noopener noreferrer"` to all external links to prevent the original page from being modified by the opened link.
 
