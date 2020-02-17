@@ -1,6 +1,7 @@
 # Spotify Now Playing
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=akhtarja/serverless-spotify-now-playing)](https://dependabot.com)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akhtarja_serverless-spotify-now-playing&metric=alert_status)](https://sonarcloud.io/dashboard?id=akhtarja_serverless-spotify-now-playing)
 
 This application is running and publicly available at https://nowplaying.tinyrobot.co/.
 
