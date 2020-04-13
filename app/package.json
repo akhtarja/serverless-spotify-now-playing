@@ -14,7 +14,7 @@
   "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme",
   "dependencies": {
     "bootstrap": "4.4.1",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery.easing": "^1.4.1",
     "popper.js": "^1.16.1"
   },
