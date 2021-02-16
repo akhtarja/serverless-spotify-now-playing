@@ -19,7 +19,7 @@
   "dependencies": {
     "aws-sdk": "^2.844.0",
     "fs": "0.0.1-security",
-    "querystring": "^0.2.0",
+    "querystring": "^0.2.1",
     "request": "^2.88.2",
     "serverless-pseudo-parameters": "^2.5.0",
     "uuid": "^8.3.2"
