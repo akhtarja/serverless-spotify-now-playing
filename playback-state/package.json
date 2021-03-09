@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/akhtarja/serverless-spotify-now-playing#readme",
   "dependencies": {
-    "aws-sdk": "^2.858.0",
+    "aws-sdk": "^2.859.0",
     "fs": "0.0.1-security",
     "lodash": "^4.17.21",
     "request": "^2.88.2",
