@@ -1,0 +1,54 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - akhtarja
+  assignees:
+  - akhtarja
+- package-ecosystem: npm
+  directory: "/app"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - akhtarja
+  assignees:
+  - akhtarja
+- package-ecosystem: npm
+  directory: "/auth"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - akhtarja
+  assignees:
+  - akhtarja
+  ignore:
+  - dependency-name: aws-sdk
+    versions:
+    - 2.889.0
+    - 2.890.0
+    - 2.893.0
+- package-ecosystem: npm
+  directory: "/playback-state"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - akhtarja
+  assignees:
+  - akhtarja
+  ignore:
+  - dependency-name: aws-sdk
+    versions:
+    - 2.889.0
+    - 2.890.0
+    - 2.893.0
